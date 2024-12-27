@@ -17,7 +17,8 @@ def preprocess_data(df):
     z_scores = np.abs(stats.zscore(numeric_data))
     df_cleaned = df[(z_scores < 3).all(axis=1)]
     
-    # Handle missing values
+    # Handle missing values (make a copy to avoid SettingWithCopyWarning)
+    df_cleaned = df_cleaned.copy()  # Make a copy to avoid the warning
     df_cleaned.fillna(df_cleaned.median(numeric_only=True), inplace=True)
     df_cleaned.fillna('missing', inplace=True)
     
@@ -48,7 +49,6 @@ def preprocess_data(df):
     X_transformed = preprocessor.fit_transform(X)
     
     # Reconstruct DataFrame with appropriate column names
-    # Get feature names from transformers
     cat_feature_names = preprocessor.named_transformers_['cat']['onehot'].get_feature_names_out(categorical_features)
     feature_names = numeric_features + cat_feature_names.tolist()
     X_transformed_df = pd.DataFrame(X_transformed, columns=feature_names)
