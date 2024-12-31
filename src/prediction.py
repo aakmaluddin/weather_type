@@ -92,12 +92,12 @@ def predict_weather(model: Any, preprocessor: Any, input_data: Dict) -> Dict:
         
         # Get predictions and probabilities
         prediction = model.predict(input_preprocessed)[0]
-        prediction_proba = model.predict_proba(input_preprocessed)[0]
+        probability = model.predict_proba(input_preprocessed)[0]
         
         # Get probabilities for all classes
         class_probabilities = {
             class_name: float(prob) 
-            for class_name, prob in zip(model.classes_, prediction_proba)
+            for class_name, prob in zip(model.classes_, probability)
         }
         
         # Sort probabilities in descending order
