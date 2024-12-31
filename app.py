@@ -72,7 +72,7 @@ def main():
             input_data['Location'] = st.selectbox('Location', ['inland', 'mountain', 'coastal'])
         
         if st.button('Submit'):
-            prediction, probability = predict_weather(model, preprocessor, input_data)
+            prediction = predict_weather(model, preprocessor, input_data)
             
             st.subheader('Classification Results')
             st.success(f'Weather Type : {prediction}')
