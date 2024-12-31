@@ -11,7 +11,7 @@ def main():
     
     page = st.sidebar.radio(
         'Choose a Page', 
-        ['Data Overview', 'Model Training', 'Weather Prediction']
+        ['Data Overview', 'Model Training', 'Weather Classification']
     )
     
     # Load data
@@ -46,7 +46,7 @@ def main():
                 st.image('feature_importance.png')
                 st.image('confusion_matrix.png')
     
-    elif page == 'Weather Prediction':
+    elif page == 'Weather Classification':
         st.header('Weather Prediction')
         
         # Load trained model and preprocessor
@@ -72,11 +72,11 @@ def main():
             input_data['Season'] = st.selectbox('Season', ['Winter', 'Spring', 'Summer', 'Autumn'])
             input_data['Location'] = st.selectbox('Location', ['inland', 'mountain', 'coastal'])
         
-        if st.button('Predict Weather'):
-            prediction, probability = predict_weather(model, preprocessor, input_data)
+        if st.button('Submit'):
+            prediction = predict_weather(model, preprocessor, input_data)
             
-            st.subheader('Prediction Results')
-            st.success(f'Predicted Weather: {prediction}')
+            st.subheader('Classification Results')
+            st.success(f'Weather Type : {prediction}')
             
 if __name__ == '__main__':
     main()
