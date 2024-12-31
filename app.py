@@ -48,8 +48,7 @@ def main():
                 st.image('feature_importance.png')
                 st.image('confusion_matrix.png')
     
-    elif page == 'Weather Prediction':
-        st.header('Weather Prediction')
+    elif page == 'Weather Classification':
         
         # Load trained model and preprocessor
         model = joblib.load('models/weather_classifier.pkl')
@@ -74,12 +73,11 @@ def main():
             input_data['Season'] = st.selectbox('Season', ['Winter', 'Spring', 'Summer', 'Autumn'])
             input_data['Location'] = st.selectbox('Location', ['inland', 'mountain', 'coastal'])
         
-        if st.button('Predict Weather'):
-            prediction, probability = predict_weather(model, preprocessor, input_data)
+        if st.button('Submit'):
+            prediction = predict_weather(model, preprocessor, input_data)
             
-            st.subheader('Prediction Results')
-            st.success(f'Predicted Weather: {prediction}')
-            st.info(f'Prediction Confidence: {probability*100:.2f}%')
+            st.subheader('Classification Results')
+            st.success(f'Weather Type : {prediction}')
 
 if __name__ == '__main__':
     main()
