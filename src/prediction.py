@@ -27,6 +27,5 @@ def predict_weather(model, preprocessor, input_data):
     
     # Predict
     prediction = model.predict(input_preprocessed)
-    prediction_proba = model.predict_proba(input_preprocessed)
     
-    return prediction[0], np.max(prediction_proba)
+    return prediction[0]
