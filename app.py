@@ -78,5 +78,5 @@ def main():
             st.subheader('Prediction Results')
             st.success(f'Predicted Weather: {prediction}')
             
-if **name** == '__main__':
+if __name__ == '__main__':
     main()
